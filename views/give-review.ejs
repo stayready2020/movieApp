@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>UA Movie - Give Review></title>
+  </head>
+  <body>
+    <h1> <%= title></h1>
+  <form method = "post">
+  <table>
+    <tr>
+      <td>
+        <span>Rating</span>
+      </td>
+      <td>
+        <select>
+          <option value = 1>1</option>
+          <option value = 2>2</option>
+          <option value = 3>3</option>
+          <option value = 4>4</option>
+          <option value = 5>5</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Title</span>
+      </td>
+      <td>
+        <input type="text" name="title" value="title" maxlength="100" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Comment</span>
+      </td>
+      <td>
+          <input type="text" name="username" value="comment" maxlength="500" required/>
+      </td>
+    </tr>
+  </table>
+    <button type = "submit" formaction = "/review">Back</button>
+    <button type = "submit" formaction = "/add-review">Submit</button>
+  </form>
+  </body>
+</html>

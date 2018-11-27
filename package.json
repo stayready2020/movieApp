@@ -1,0 +1,11 @@
+{
+  "name": "uamovie",
+  "version": "1.0.0",
+  "description": "CS301 project",
+  "main": "demo_db_connection.js",
+  "scripts": {
+    "test": "d"
+  },
+  "author": "",
+  "license": "ISC"
+}
