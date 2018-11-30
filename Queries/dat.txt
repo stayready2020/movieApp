@@ -1,50 +1,82 @@
-1. Now Playing
+1/ Now playing
 After logged in as customer => be taken to this window => list out all the movies in theaters now
 
+SELECT DISTINCT playsat.title FROM playsat WHERE playsat.playing = 'Y';
 
-SELECT title FROM plays_at WHERE playing = 'yes';
+2/ Me
+Click on “Me” => direct to Me page => can do 3 things:
 
-2. Me
-Click on “Me” => direct to Me page => can do 3 things: View order history, view saved card, view preferred theater
+-	View order history:
 
-SELECT orders.date, orders.num_senior_tickets, 
-orders.num_child_tickets, orders.num_adult_tickets, 
-orders.num_total_tickets, orders.time, orders.status, 
-orders.title, theater.name FROM orders 
-JOIN theater ON orders.theater_id = theater.theater_id 
-WHERE orders.username = 'GivenUserName';
+SELECT orders.orderID, orders.totalTix, orders.status, 
+orders.title FROM orders 
+WHERE orders.username = 'ricklepick';
 
-SELECT card_number, cvv, name_on_card, expiration_date, saved 
-FROM payment_information WHERE username = 'GivenUserName';
+Replace 'ricklepickle' in the actual program.
 
-SELECT theater.name, theater.street, theater.city, 
-theater.state, theater.zip FROM prefers JOIN theater ON 
-prefers.theater_id = theater.theater_id WHERE 
-prefers.username = 'GivenUserName';
+-	View saved card:
 
-3. Movie
+SELECT payment_info.cardno, payment_info.name, payment_info.expiration 
+FROM payment_info WHERE username = 'ricklepick' AND saved = 'y';
+
+
+Replace 'ricklepickle' in the actual program.
+
+-	View preferred theaters: 
+
+SELECT theatre.name, theatre.street, theatre.city, 
+theatre.state, theatre.zip FROM prefers JOIN theatre ON 
+prefers.theatreid = theatre.theatreid WHERE 
+prefers.username = 'ricklepick';
+
+Replace 'ricklepickle' in the actual program.
+
+3/ Movie
 After clicking on a Movie on Now Playing page => customer will be directed here => show release date, rating, length, genre, average rating of the movie.
 
-SELECT title, length, genre, release_date, rating FROM movie 
-WHERE title = 'GivenTitle';
+SELECT movie.title, movie.length, movie.genre, movie.releasedate, avg(review.rating) 
+FROM movie JOIN review ON movie.title = review.title
+WHERE movie.title = 'Shrek';
 
-4. Overview 
-Can view synopsis and cast
+Replace 'Shrek' in the actual program.
 
-SELECT title, cast, synopsis FROM movie WHERE 
-title = 'GivenTitle';
+4/ Overview
+Can view synopsis and cast.
 
-5. Review
-Can view review on this page. 
+SELECT movie.title, movie.cast, movie.synopsis FROM movie WHERE 
+title = 'Shrek';
+
+Replace 'Shrek' in the actual program.
+
+5/ Review
+Can view reviews on this page. 
+
+SELECT review.title, review.comment, review.rating FROM review WHERE 
+title = 'Shrek';
+
 Calculate and show average rating.
 
-SELECT AVG(rating) FROM review WHERE title = "GivenTitle";
+SELECT AVG(rating) FROM review WHERE title = 'Shrek';
 
-SELECT title, comment, rating FROM review WHERE 
-title = "GivenTitle";
+Replace 'Shrek' in the actual program.
 
-6. Give Review 
-Can select rating => title and rating must be filled, comment part might be blank
+6/ Give Review
+Can only give review for movie they have seen.
 
-INSERT INTO review VALUES (NULL, 'GivenTitle', 'GivenComment', 
-GivenRating, 'GivenUsername');
+SELECT orders.status FROM orders
+WHERE orders.title = 'Shrek' AND orders.status = 'completed' AND orders.username = 'ricklepick';
+
+Can select rating => title and rating must be filled, comment part might be blank.
+
+INSERT INTO review  VALUES (NULL, 'Shrek', 'Great!', 
+5, 'ricklepick');
+
+Replace 'Shrek', 'ricklepick', 'Great!', 5 in the actual program.
+
+
+
+
+
+
+	
+
