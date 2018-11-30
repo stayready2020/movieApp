@@ -12,6 +12,11 @@ SELECT orders.orderID, orders.totalTix, orders.status,
 orders.title FROM orders 
 WHERE orders.username = 'ricklepick';
 
+new version:
+SELECT orders.orderID, orders.totalTix, orders.status, orders.title, orders.numSeniorTix * systeminfo.seniorPrice + orders.numChildTix * systeminfo.childPrice + orders.numAdultTix * systeminfo.adultPrice
+FROM orders, systeminfo
+WHERE orders.username = 'ricklepick'
+
 Replace 'ricklepickle' in the actual program.
 
 -	View saved card:
