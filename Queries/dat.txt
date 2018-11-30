@@ -1,0 +1,50 @@
+1. Now Playing
+After logged in as customer => be taken to this window => list out all the movies in theaters now
+
+
+SELECT title FROM plays_at WHERE playing = 'yes';
+
+2. Me
+Click on “Me” => direct to Me page => can do 3 things: View order history, view saved card, view preferred theater
+
+SELECT orders.date, orders.num_senior_tickets, 
+orders.num_child_tickets, orders.num_adult_tickets, 
+orders.num_total_tickets, orders.time, orders.status, 
+orders.title, theater.name FROM orders 
+JOIN theater ON orders.theater_id = theater.theater_id 
+WHERE orders.username = 'GivenUserName';
+
+SELECT card_number, cvv, name_on_card, expiration_date, saved 
+FROM payment_information WHERE username = 'GivenUserName';
+
+SELECT theater.name, theater.street, theater.city, 
+theater.state, theater.zip FROM prefers JOIN theater ON 
+prefers.theater_id = theater.theater_id WHERE 
+prefers.username = 'GivenUserName';
+
+3. Movie
+After clicking on a Movie on Now Playing page => customer will be directed here => show release date, rating, length, genre, average rating of the movie.
+
+SELECT title, length, genre, release_date, rating FROM movie 
+WHERE title = 'GivenTitle';
+
+4. Overview 
+Can view synopsis and cast
+
+SELECT title, cast, synopsis FROM movie WHERE 
+title = 'GivenTitle';
+
+5. Review
+Can view review on this page. 
+Calculate and show average rating.
+
+SELECT AVG(rating) FROM review WHERE title = "GivenTitle";
+
+SELECT title, comment, rating FROM review WHERE 
+title = "GivenTitle";
+
+6. Give Review 
+Can select rating => title and rating must be filled, comment part might be blank
+
+INSERT INTO review VALUES (NULL, 'GivenTitle', 'GivenComment', 
+GivenRating, 'GivenUsername');
